@@ -1,5 +1,6 @@
 $(document).ready(function(){
    $('#getLogsButton').click(function(){
+   		$('.bordered-table tbody').remove();
    		var searchString = $('#logSearchString').val();
    		var searchSource = $('#logSearchTenant').val() + '_' + $('#logSearchServer').val() + '_' + $('#logSearchLog').val();
    		$.ajax({
@@ -19,9 +20,14 @@ $(document).ready(function(){
         		
         		$.each(json.value, function(i, log_source) {
         			$.each(log_source.values, function(key, value) {
-        				$(".result").append("<b>" + value + "</b><br>");
+        				$.each(value, function(index, event) {
+							var timestamp = event.match(/^\[.*\]/);
+							var event = event.substring(event.indexOf(']')+1);
+							$("#content-table").append("<tr><td>" + timestamp + "</td><td>" + event + "</td></tr>");
+						});
         			});
-        		});	
+        		});
+        		$('#content-table').highlight(searchString);	
     		},
     		error: function(request, textStatus, errorThrown) {
     			alert(textStatus);
