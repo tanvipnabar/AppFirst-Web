@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<head> 
+		<title>AppFirst Logs Example</title>
+		<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css" rel="stylesheet">
+
+	 	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.2.min.js"></script>
+			<!--jQuery, linked from a CDN-->
+		<script src="jquery.highlight-4.js"></script>
+		<script src="script.js"></script>
+   		<style>
+   			.highlight { background-color: lightblue }
+   			
+   			#severity li{
+   				list-style-type: none;
+   				display: inline;
+   				padding-right: 20px;
+      		}
+      		
+      		.topnav {
+      			background-color:black;
+      			color:white;
+      			border-radius:5px;
+      		}
+   		</style>
+	</head>
+	<body>
+		<div class="topnav"> 
+			<div class="container">
+				<div id='content' class='row-fluid'>
+					<div class="row">
+						<div class="span3"><br> 
+							<p>
+								<b> Source </b>
+								<input type="text" id="logSearchString"></input>
+							</p>
+						</div>
+						<div class="span3"><br>
+							<p>
+								<b> Date </b> 
+								<input type="text" id="logSearchDate"></input>
+							</p>
+						</div>
+						<div class="span6"><br>
+							<ul id="severity">
+								<li><b> Severity </b></li>
+								<li>Critical <input type="radio" value="Critical"></input></li>
+								<li>Warning <input type="radio" value="Warning"></input></li>
+								<li>Info <input type="radio" value="Info"></input></li>
+								<li><input type="submit" id="getLogsButton"></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="result-table"> 			
+			<div class="container">
+				<div id='content' class='row-fluid'>
+					<table class="table table-striped" id="content-table">
+						<thead>
+								<tr>
+									<th><b>Timestamp</b></th>
+									<th><b>Event</b></th>
+								</tr>
+						</thead>					
+					</table>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

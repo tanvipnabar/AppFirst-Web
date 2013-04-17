@@ -9,15 +9,20 @@
 		<script src="jquery.highlight-4.js"></script>
 		<script src="script.js"></script>
    		<style>
-   			.highlight { background-color: lightblue }
+   			.highlight { background-color: lightsblue }
    		</style>
 	</head>
 	<body>
 		<div class="container">
 			<div id='content' class='row-fluid'>
-				<h1> Please enter the following </h1>
-				<b> Keyword </b> <input type="text" id="logSearchString">
-				<b> Tenant </b> <input type="text" id="logSearchTenant">
+				<div class="row">
+					<div class="span3"><br> 
+						<b> Source </b> <input type="text" id="logSearchString">
+					</div>
+					<div class="span3"><br>
+						<b> Date </b> <input type="text" id="logSearchDate">
+					</div>
+					<div class="span6"><br>
 				<b> Server </b> <input type="text" id="logSearchServer">
 				<b> Log </b> <input type="text" id="logSearchLog">
 				<input type="submit" id="getLogsButton"> 
