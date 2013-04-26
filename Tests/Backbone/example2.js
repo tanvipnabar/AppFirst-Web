@@ -8,25 +8,21 @@ $(function() {
 			server_uri: ''
 		}
 	});
-
-	//var logs = new Logs();
-
-	/*logs.fetch({
-		success: function (logs){
-			logs.set({server_uri: logs.toJSON()[0].server_uri});
-			alert(logs.toJSON().server_uri);
-			alert(logs.toJSON()[0].server_uri);
-			$.each(logs.toJSON(), function(i, log) {
-				console.log(log);
-			});
-		}
-	});*/
 	
 	var logs = new Logs();
 	
 	LogsCollection = Backbone.Collection.extend({
+		defaults: {
+			response: ''
+		},
+	
 		model: Logs,
+		
 		url:'https://wwws.appfirst.com/api/v3/logs/',
+		
+		parse: function (response) {
+			this.response=response;
+		}
 	});
 	
 	var logcol = new LogsCollection();
@@ -48,24 +44,25 @@ $(function() {
 		},*/
 
 		initialize: function(){
-			_.bindAll(this, 'render');
-			this.render();
+			this.collection.bind("reset", _.bind(this.render, this));
+			var self = this;
+			this.collection.fetch({
+				success: function (logs){
+					/*$.each(logs.toJSON(), function(i, log) {
+						//console.log(log);
+					});*/
+				}
+			});
+			
 		},
 
 		render: function(){
 			var logVar = {
-					server_uri: 'abc'
+					responses: this.collection.response
 			};
-			this.collection.fetch({
-				success: function (logs){
-					$.each(logs.toJSON(), function(i, log) {
-						console.log(log);
-					});
-					var template = _.template( $("#log-template").html(), logVar );
-					this.el.html(template);//(this.collection.toJSON()));
-				}
-			});
-			
+			var template = _.template( $("#log-template").html(), logVar );
+			this.el.html(template);//(this.collection.toJSON()));
+			console.log(this.collection.response[0].server_uri);
 			//alert("BLAH");	
 		}
 	});

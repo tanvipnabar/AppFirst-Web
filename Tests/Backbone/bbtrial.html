@@ -10,7 +10,9 @@
  	<script type="text/template" id="log-template">
  	<h2>Log Information</h2>
     	<div id="details">
-        	Server URI: <%=server_uri %><br />
+        	<% _.each(responses, function(response) { %>
+        	<%= response.source %><br />
+        	<% }); %>
     	</div>
 	</script>
  
