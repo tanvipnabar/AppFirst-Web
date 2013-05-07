@@ -2,7 +2,10 @@ $(document).ready(function(){
    $('#getLogsButton').click(function(){
    		$('.bordered-table tbody').remove();
    		var searchString = $('#logSearchString').val();
+   		if($('#logSearchTenant').val() && $('#logSearchServer').val() && $('#logSearchLog').val()
    		var searchSource = $('#logSearchTenant').val() + '_' + $('#logSearchServer').val() + '_' + $('#logSearchLog').val();
+   		var url = 'http://184.173.78.71:4567/search_by_keywords'
+   		if(search
    		$.ajax({
     		dataType: 'json',
     		type: 'GET',
